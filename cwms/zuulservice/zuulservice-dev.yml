@@ -1,0 +1,12 @@
+
+zuul:
+  prefix:  /api
+  routes:
+    layoutservice: /layout/**
+    authservice: /auth/**
+
+customized:
+  source: github
+  version: 1.0
+  lastUpdate: 8/2/2019
+  profile: dev
