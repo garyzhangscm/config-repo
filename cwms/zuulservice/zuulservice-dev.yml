@@ -5,6 +5,13 @@ zuul:
     layoutservice: /layout/**
     authservice: /auth/**
 
+# Expose * so we can access /actuator/routes
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 customized:
   source: github
   version: 1.0
