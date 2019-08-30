@@ -1,5 +1,6 @@
 
 zuul:
+  ignored-services: "*"
   prefix:  /api
   routes:
     layoutservice: /layout/**
