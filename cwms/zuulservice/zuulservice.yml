@@ -11,7 +11,7 @@ zuul:
   routes:
     layoutservice: /layout/**
     authservice: /auth/**
-    RESOURCESERVICE: /resource/**
+    resourceservice: /resource/**
 
 # Expose * so we can access /actuator/routes
 management:
