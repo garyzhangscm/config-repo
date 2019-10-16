@@ -15,6 +15,9 @@ spring:
   # ==============================================================
       testWhileIdle: true
       validationQuery: SELECT 1
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:5555/api/auth/user
 
   # ==============================================================
   # = Show or not log for each sql query
