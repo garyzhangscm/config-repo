@@ -33,13 +33,20 @@ spring:
 
 security:
   oauth2:
-    ## client:
-    ##  clientId: cwms
-    ##  clientSecret: gz-cwms
+    client:
+      clientId: cwms
+      clientSecret: gz-cwms
     resource:
       ##   userInfoUri: http://localhost:5555/api/auth/user
       userInfoUri: http://localhost:8901/user
-      ##   tokenInfoUri: http://localhost:8901/oauth2/check_token
+      tokenInfoUri: http://localhost:8901/oauth2/check_token
+
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.garyzhangscm: DEBUG
+
 customized:
     source: github
     version: 1.0
