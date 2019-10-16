@@ -27,7 +27,8 @@ spring:
               enable_lazy_load_no_trans: true
   oauth2:
     resource:
-      userInfoUri: http://localhost:5555/api/auth/user
+      # userInfoUri: http://localhost:5555/api/auth/user
+      userInfoUri: http://localhost:8901/user
   # ==============================================================
   # = Hibernate ddl auto (create, create-drop, update)
   # ==============================================================

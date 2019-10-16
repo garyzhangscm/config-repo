@@ -17,7 +17,8 @@ spring:
       validationQuery: SELECT 1
   oauth2:
     resource:
-      userInfoUri: http://localhost:5555/api/auth/user
+   ##   userInfoUri: http://localhost:5555/api/auth/user
+      userInfoUri: http://localhost:8901/user
 
   # ==============================================================
   # = Show or not log for each sql query
