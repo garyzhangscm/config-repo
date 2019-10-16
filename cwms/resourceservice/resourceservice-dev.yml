@@ -35,9 +35,9 @@ spring:
 
 security:
   oauth2:
-     client:
-       clientId: cwms
-       clientSecret: gz-cwms
+    client:
+      clientId: cwms
+      clientSecret: gz-cwms
     resource:
       ##   userInfoUri: http://localhost:5555/api/auth/user
       userInfoUri: http://localhost:8901/user
