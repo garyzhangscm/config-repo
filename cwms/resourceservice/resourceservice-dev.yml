@@ -25,15 +25,24 @@ spring:
           hibernate:
               dialect: org.hibernate.dialect.MySQL5Dialect
               enable_lazy_load_no_trans: true
-  oauth2:
-    resource:
-      # userInfoUri: http://localhost:5555/api/auth/user
-      userInfoUri: http://localhost:8901/user
   # ==============================================================
   # = Hibernate ddl auto (create, create-drop, update)
   # ==============================================================
   hibernate:
       ddl-auto: none
+
+
+
+security:
+  oauth2:
+    ## client:
+    ##  clientId: cwms
+    ##  clientSecret: gz-cwms
+    resource:
+      ##   userInfoUri: http://localhost:5555/api/auth/user
+      userInfoUri: http://localhost:8901/user
+      ##   tokenInfoUri: http://localhost:8901/oauth2/check_token
+
   # ==============================================================
   # = For actuator
   # ==============================================================
