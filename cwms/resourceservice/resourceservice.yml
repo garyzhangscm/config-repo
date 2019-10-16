@@ -16,9 +16,13 @@ spring:
       testWhileIdle: true
       validationQuery: SELECT 1
   oauth2:
+    client:
+      clientId: cwms
+      clientSecret: gz-cwms
     resource:
    ##   userInfoUri: http://localhost:5555/api/auth/user
       userInfoUri: http://localhost:8901/user
+      tokenInfoUri: http://localhost:8901/oauth2/check_token
 
   # ==============================================================
   # = Show or not log for each sql query
