@@ -36,17 +36,18 @@ spring:
 security:
   oauth2:
     client:
-      access-token-uri: http://172.18.0.7:8901/oauth/token
+      # access-token-uri: http://172.18.0.7:8901/oauth/token
+      access-token-uri: http://localhost:8901/oauth/token
       clientId: "cwms"
       clientSecret: "gz-cwms"
       grantType: password
       scope: webclient
     resource:
       ##   userInfoUri: http://localhost:5555/api/auth/user
-      # userInfoUri: http://localhost:8901/user
-      # tokenInfoUri: http://localhost:8901/oauth2/check_token
-      userInfoUri: http://172.18.0.7:8901/user
-      tokenInfoUri: http://172.18.0.7:8901/oauth2/check_token
+      userInfoUri: http://localhost:8901/user
+      tokenInfoUri: http://localhost:8901/oauth2/check_token
+      # userInfoUri: http://172.18.0.7:8901/user
+      # tokenInfoUri: http://172.18.0.7:8901/oauth2/check_token
 
 logging:
   level:
