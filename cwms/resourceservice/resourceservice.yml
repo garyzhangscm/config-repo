@@ -45,7 +45,7 @@ security:
     resource:
       ##   userInfoUri: http://localhost:5555/api/auth/user
       userInfoUri: http://localhost:8901/user
-      tokenInfoUri: http://localhost:8901/oauth2/check_token
+      tokenInfoUri: http://localhost:8901/oauth/check_token
       # userInfoUri: http://172.18.0.7:8901/user
       # tokenInfoUri: http://172.18.0.7:8901/oauth2/check_token
 
