@@ -13,6 +13,14 @@ zuul:
     authservice: /auth/**
     resourceservice: /resource/**
 
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2500
+
 # Expose * so we can access /actuator/routes
 management:
   endpoints:
