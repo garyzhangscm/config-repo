@@ -12,6 +12,14 @@ zuul:
     layoutservice: /layout/**
     authservice: /auth/**
     resourceservice: /resource/**
+  host:
+    time-to-live: -1
+    connect-timeout-millis: 5000
+    max-per-route-connections: 10000
+    max-total-connections: 5000
+    socket-timeout-millis: 60000
+    semaphore:
+      max-semaphores: 500
 
 hystrix:
   command:
@@ -19,7 +27,12 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 2500
+            timeoutInMilliseconds: 25000
+ribbon:
+  ReadTimeout: 60000
+  connection-timeout: 3000
+  eureka:
+    enabled: true
 
 # Expose * so we can access /actuator/routes
 management:
