@@ -1,0 +1,48 @@
+
+zuul:
+  # By default, sensitiveHeaders=Cookie,Set-Cookie,Authorization, which will cause the Authorizaiton be
+  # ignored after flow the request by ZUUL, then if we need to use ZUUL in front of a OAuth2, we will
+  # fail because of the missing of Authorization section in HTML head. This Authorization section will
+  # include Basic ZWFnbGVleWU6dGhpc2lzc2VjcmV0, While Basic is the key word for basic type of authenticaiton
+  # and ZWFnbGVleWU6dGhpc2lzc2VjcmV0 is the encrypted Client:Secret
+  sensitiveHeaders: Cookie,Set-Cookie
+  ignored-services: "*"
+  prefix:  /api
+  routes:
+    layoutservice: /layout/**
+    authservice: /auth/**
+    resourceservice: /resource/**
+  host:
+    time-to-live: -1
+    connect-timeout-millis: 5000
+    max-per-route-connections: 10000
+    max-total-connections: 5000
+    socket-timeout-millis: 60000
+    semaphore:
+      max-semaphores: 500
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 25000
+ribbon:
+  ReadTimeout: 60000
+  connection-timeout: 3000
+  eureka:
+    enabled: true
+
+# Expose * so we can access /actuator/routes
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+customized:
+  source: github
+  version: 1.0
+  lastUpdate: 8/2/2019
+  profile: dev
