@@ -7,7 +7,7 @@ spring:
     ## url: "jdbc:mysql://database:3306/cwms"
     url: "jdbc:mysql://database:3306/cwms"
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: cwms_dba1
+    username: cwms_dba
     password: "{cipher}7c2de3d3bc6d2f19bd8d46b3b339e01dfd964af0abac0900824d00cae070b3c1"
     # password: "{noop}cwms@2019"
     initialization-mode: always
