@@ -9,10 +9,10 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     username: cwms_dba
     # password: cwms@2019
-    #password: "{cipher}7c2de3d3bc6d2f19bd8d46b3b339e01dfd964af0abac0900824d00cae070b3c1"
+    password: "{cipher}7c2de3d3bc6d2f19bd8d46b3b339e01dfd964af0abac0900824d00cae070b3c1"
 
     #username: cwms
-    password: "{cipher}a53f0b89e7c3a118264c975185ca6a942c9466f7b20911220c034a3c236c69fe"
+    #password: "{cipher}a53f0b89e7c3a118264c975185ca6a942c9466f7b20911220c034a3c236c69fe"
     # username: root
     # password: "{cipher}10bafb90bf15fcdb832489d1660573ada23f236ebe4d02a7dd65c420c7d9897a"
 
