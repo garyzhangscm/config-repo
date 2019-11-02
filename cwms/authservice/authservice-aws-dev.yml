@@ -3,16 +3,16 @@
 # ==============================================================
 spring:
   datasource:
-    # url: "jdbc:mysql://192.168.99.100:3306/cwms"
-    ## url: "jdbc:mysql://database:3306/cwms"
+    ###
+    # Note: when working with docker mysql:latest
+    # and latest jar mysql:mysql-connector-java
+    # in local DEV environment, we will need to use
+    # 1. jdbc:mysql://localhost:3306/cwms: for locale environment(windows + docker)
+    # 2. jdbc:mysql://database:3306/cwms: for AWS environment(EC2 + linux 2 + docker)
     url: "jdbc:mysql://database:3306/cwms"
+    # url: jdbc:mysql://localhost:3306/cwms
     driverClassName: com.mysql.cj.jdbc.Driver
     username: cwms_dba
-    # password: cwms@2019
-    # Not sure why the db doesn't like the password cmws@2019. When i use cwms@2019, it
-    # is not possible to connect to DB. But when changing the password to
-    # cwms@2018, then no problem when connecting to DB
-    # password: "{cipher}7c2de3d3bc6d2f19bd8d46b3b339e01dfd964af0abac0900824d00cae070b3c1"
     # password: cwms@2018
     password: "{cipher}a53f0b89e7c3a118264c975185ca6a942c9466f7b20911220c034a3c236c69fe"
 
