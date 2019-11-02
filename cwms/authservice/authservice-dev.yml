@@ -9,10 +9,11 @@ spring:
     # in local DEV environment, we will need to use
     # 1. jdbc:mysql://localhost:3306/cwms: for locale environment(windows + docker)
     # 2. jdbc:mysql://database:3306/cwms: for AWS environment(EC2 + linux 2 + docker)
-    # url: "jdbc:mysql://database:3306/cwms"
-    url: jdbc:mysql://localhost:3306/cwms
+    url: "jdbc:mysql://database:3306/cwms"
+    # url: jdbc:mysql://localhost:3306/cwms
     driverClassName: com.mysql.cj.jdbc.Driver
     username: cwms_dba
+    # password: cwms@2018
     password: "{cipher}a53f0b89e7c3a118264c975185ca6a942c9466f7b20911220c034a3c236c69fe"
     initialization-mode: always
     # ==============================================================
