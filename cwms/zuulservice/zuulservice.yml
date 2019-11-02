@@ -41,9 +41,4 @@ management:
       exposure:
         include: "*"
 
-customized:
-    source: github
-    version: 1.0
-    lastUpdate: 8/2/2019
-    profile: default
 

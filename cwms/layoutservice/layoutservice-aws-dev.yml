@@ -45,37 +45,6 @@ spring:
   # ==============================================================
   hibernate:
       ddl-auto: none
-  # ==============================================================
-  # = For actuator
-  # ==============================================================
-  # Endpoint IDs that should be included or '*' for all., default is health and info
-  # management.endpoints.web.exposure.include=health,info
-# management:
-#  endpoints:
-#      web:
-#          exposure:
-#              include:*
-# Endpoint IDs that should be excluded or '*' for all.
-# management.endpoints.web.exposure.exclude=
-
-# Base path for Web endpoints. Relative to server.servlet.context-path or management.server.servlet.context-path if management.server.port is configured.
-# management.endpoints.web.base-path=/actuator
-
-# Mapping between endpoint IDs and the path that should expose them.
-# management.endpoints.web.path-mapping=
-
-####    Securing Endpoint
-# Roles used to determine whether or not a user is authorized to be shown details. When empty, all authenticated users are authorized. //for health
-# management.endpoint.health.roles=
-
-# When to show full health details.
-# management.endpoint.health.show-details=always,never
-
-#### Enable or Disable endpoint
-# Whether to enable the health endpoint.
-# e.g. management.endpoint.health.enabled=true
-# management.endpoint.(endpointName).enabled=true
-
 
 security:
   oauth2:
@@ -89,8 +58,11 @@ security:
       userInfoUri: http://authserver:8901/user
       tokenInfoUri: http://authserver:8901/oauth/check_token
 
-customized:
-  source: github
-  version: 1.0
-  lastUpdate: 8/2/2019
-  profile: dev
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8761/eureka
