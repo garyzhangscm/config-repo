@@ -7,6 +7,7 @@ spring:
       url: "jdbc:mysql://database:3306/cwms?allowPublicKeyRetrieval=true&useSSL=false"
       # url: jdbc:mysql://localhost:3306/cwms
       # driverClassName: com.mysql.cj.jdbc.Driver
+      driverClassName: com.mysql.jdbc.Driver
       username: cwms
       password: "{cipher}a53f0b89e7c3a118264c975185ca6a942c9466f7b20911220c034a3c236c69fe"
       initialization-mode: always
