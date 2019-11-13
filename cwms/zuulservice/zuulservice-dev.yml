@@ -12,6 +12,7 @@ zuul:
     layoutservice: /layout/**
     authservice: /auth/**
     resourceservice: /resource/**
+    commonservice: /common/**
   host:
     time-to-live: -1
     connect-timeout-millis: 5000
