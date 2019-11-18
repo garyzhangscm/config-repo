@@ -1,0 +1,47 @@
+# ==============================================================
+# = Data Source
+# ==============================================================
+spring:
+  datasource:
+    ###
+    # 1. When compile service in local environment, since it is not in a docker container
+    #    we will need to use localhost:3306 to access the docker that runs config server
+    # >> config server runs at docker container and open 3306 port
+    # >> then we map the container's 3306 port to localhost's 3306 port
+    # 2. When run the service in Docker environment, we are no long able to access the
+    #    config server's docker container by localhost, we should use the config server's
+    #    container's name to access the config server
+    #
+    # 3. That is to say
+    # 3.1. For compile
+    # 3.1.1. profile: default
+    # 3.1.2. spring.datasource.url: "jdbc:mysql://localhost:3306/cwms"
+    # 3.2. To run in docker
+    # 3.2.1. profile: dev / aws-dev / test / aws-test / etc.
+    # 3.2.2. spring.datasource.url: "jdbc:mysql://database:3306/cwms"
+    url: jdbc:mysql://localhost:3306/cwms
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: cwms_dba
+    # password: cwms@2018
+    password: "{cipher}a53f0b89e7c3a118264c975185ca6a942c9466f7b20911220c034a3c236c69fe"
+    initialization-mode: always
+    # ==============================================================
+    # = Keep the connection alive if idle for a long time (needed in production)
+    # ==============================================================
+    testWhileIdle: true
+    validationQuery: SELECT 1
+
+  # ==============================================================
+  # = Show or not log for each sql query
+  # ==============================================================
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        enable_lazy_load_no_trans: true
+    # ==============================================================
+    # = Hibernate ddl auto (create, create-drop, update)
+    # ==============================================================
+    hibernate:
+      ddl-auto: none
