@@ -63,6 +63,8 @@ logging:
     com.netflix: WARN
     org.springframework.web: WARN
     com.garyzhangscm: DEBUG
+  file: inventoryservice.log
+  path: /tmp/logs
 
 eureka:
   instance:

@@ -67,6 +67,8 @@ logging:
     com.netflix: DEBUG
     org.springframework.web: DEBUG
     com.garyzhangscm: DEBUG
+  file: inventoryservice.log
+  path: /tmp/logs
 
 eureka:
   instance:

@@ -72,3 +72,5 @@ logging:
     com.netflix: WARN
     org.springframework.web: WARN
     com.garyzhangscm: DEBUG
+  file: commonservice.log
+  path: /tmp/logs

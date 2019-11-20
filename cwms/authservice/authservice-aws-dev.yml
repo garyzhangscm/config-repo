@@ -52,6 +52,8 @@ logging:
     com.netflix: WARN
     org.springframework.web: WARN
     com.garyzhangscm: DEBUG
+  file: authservice.log
+  path: /tmp/logs
 
 eureka:
   instance:
