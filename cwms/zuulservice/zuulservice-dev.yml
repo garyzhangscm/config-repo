@@ -15,6 +15,7 @@ zuul:
     commonservice: /common/**
     inventoryservice: /inventory/**
     inboundservice: /inbound/**
+    outboundservice: /outbound/**
   host:
     time-to-live: -1
     connect-timeout-millis: 5000
