@@ -40,7 +40,7 @@ spring:
       # =============================================
       url: "jdbc:mysql://cwms.cwboexrsigq2.us-west-1.rds.amazonaws.com:3306/cwms"
       driverClassName: com.mysql.cj.jdbc.Driver
-      username: cwms_dba
+      username: cwms_dba_auth
       # password: cwms_2018
       password: "{cipher}6ad3c6a689b92d69fdfbcce9b60a82da92eeec70f43d1fbc9f5c510553011666"
       initialization-mode: always
