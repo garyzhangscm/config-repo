@@ -2,6 +2,9 @@
 # = Data Source
 # ==============================================================
 spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
   datasource:
     ###
     # 1. When compile service in local environment, since it is not in a docker container
