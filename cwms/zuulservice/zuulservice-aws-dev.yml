@@ -16,6 +16,7 @@ zuul:
     inventoryservice: /inventory/**
     inboundservice: /inbound/**
     outboundservice: /outbound/**
+    workorderservice: /workorder/**
   host:
     time-to-live: -1
     connect-timeout-millis: 5000
@@ -60,5 +61,5 @@ logging:
     com.netflix: WARN
     org.springframework.web: WARN
     com.garyzhangscm: DEBUG
-  file: inventoryservice.log
+  file: zuulservice.log
   path: /tmp/logs
