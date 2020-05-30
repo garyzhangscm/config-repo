@@ -18,6 +18,7 @@ zuul:
     outboundservice: /outbound/**
     workorderservice: /workorder/**
     integrationservice: /integration/**
+    adminservice: /admin/**
   host:
     time-to-live: -1
     connect-timeout-millis: 5000
