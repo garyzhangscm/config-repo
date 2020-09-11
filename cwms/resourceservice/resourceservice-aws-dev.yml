@@ -127,3 +127,7 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://eurekaserver:8761/eureka
+
+site:
+  company:
+    singleCompany: true
