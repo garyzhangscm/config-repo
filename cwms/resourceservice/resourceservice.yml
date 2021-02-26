@@ -90,5 +90,5 @@ security:
 
 site:
   company:
-    singleCompany: true
+    singleCompany: false
     defaultCompanyCode: 20901
