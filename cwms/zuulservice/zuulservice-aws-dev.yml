@@ -82,3 +82,9 @@ security:
       # tokenInfoUri: http://localhost:8901/oauth2/check_token
       userInfoUri: http://authserver:8901/user
       tokenInfoUri: http://authserver:8901/oauth/check_token
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
