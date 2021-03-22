@@ -27,7 +27,7 @@ spring:
       # ===================================================
       # = Docker based mysql
       # ===================================================
-      url: "jdbc:mysql://database:3306/cwms"
+      url: "jdbc:mysql://database:3306/cwms?serverTimezone=PST&useLegacyDatetimeCode=false"
       driverClassName: com.mysql.cj.jdbc.Driver
       username: cwms_dba
         # password: cwms@2018
