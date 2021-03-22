@@ -9,16 +9,46 @@ zuul:
   ignored-services: "*"
   prefix:  /api
   routes:
-    layoutservice: /layout/**
-    authservice: /auth/**
-    resourceservice: /resource/**
-    commonservice: /common/**
-    inventoryservice: /inventory/**
-    inboundservice: /inbound/**
-    outboundservice: /outbound/**
-    workorderservice: /workorder/**
-    integrationservice: /integration/**
-    adminservice: /admin/**
+    layoutservice:
+      path: /layout/**
+      url: http://layoutservice:8180
+      serviceId: layoutservice
+    authservice:
+      path:  /auth/**
+      url: http://authserver:8901
+      serviceId: authserver
+    resourceservice:
+      path:  /resource/**
+      url: http://resourceservice:8280
+      serviceId: resourceservice
+    commonservice:
+      path:  /common/**
+      url: http://commonservice:8380
+      serviceId: commonservice
+    inventoryservice:
+      path:  /inventory/**
+      url: http://inventoryservice:8480
+      serviceId: inventoryservice
+    inboundservice:
+      path:  /inbound/**
+      url: http://inboundservice:8580
+      serviceId: inboundservice
+    outboundservice:
+      path:  /outbound/**
+      url: http://outboundservice:8680
+      serviceId: outboundservice
+    workorderservice:
+      path:  /workorder/**
+      url: http://workorderservice:8780
+      serviceId: workorderservice
+    integrationservice:
+      path:  /integration/**
+      url: http://integrationservice:8880
+      serviceId: integrationservice
+    adminservice:
+      path:  /admin/**
+      url: http://adminservice:8078
+      serviceId: adminservice
   host:
     time-to-live: -1
     connect-timeout-millis: 5000
