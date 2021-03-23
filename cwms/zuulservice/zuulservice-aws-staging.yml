@@ -69,7 +69,7 @@ ribbon:
   ReadTimeout: 60000
   connection-timeout: 3000
   eureka:
-    enabled: true
+    enabled: false
 
 # Expose * so we can access /actuator/routes
 management:
@@ -77,15 +77,15 @@ management:
     web:
       exposure:
         include: "*"
-
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://eurekaserver:8761/eureka
+# disable eureka in staging environment as we are using kubernetes
+# eureka:
+#  instance:
+#    preferIpAddress: true
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://eurekaserver:8761/eureka
 
 
 logging:
