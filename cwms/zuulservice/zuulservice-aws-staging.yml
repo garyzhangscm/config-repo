@@ -11,43 +11,43 @@ zuul:
   routes:
     layoutservice:
       path: /layout/**
-      url: http://layoutservice:8180
+#      url: http://layoutservice:8180
       serviceId: layoutservice
     authservice:
       path:  /auth/**
-      url: http://authserver:8901
+#      url: http://authserver:8901
       serviceId: authserver
     resourceservice:
       path:  /resource/**
-      url: http://resourceservice:8280
+#      url: http://resourceservice:8280
       serviceId: resourceservice
     commonservice:
       path:  /common/**
-      url: http://commonservice:8380
+#      url: http://commonservice:8380
       serviceId: commonservice
     inventoryservice:
       path:  /inventory/**
-      url: http://inventoryservice:8480
+#      url: http://inventoryservice:8480
       serviceId: inventoryservice
     inboundservice:
       path:  /inbound/**
-      url: http://inboundservice:8580
+#      url: http://inboundservice:8580
       serviceId: inboundservice
     outboundservice:
       path:  /outbound/**
-      url: http://outboundservice:8680
+#      url: http://outboundservice:8680
       serviceId: outboundservice
     workorderservice:
       path:  /workorder/**
-      url: http://workorderservice:8780
+#      url: http://workorderservice:8780
       serviceId: workorderservice
     integrationservice:
       path:  /integration/**
-      url: http://integrationservice:8880
+#      url: http://integrationservice:8880
       serviceId: integrationservice
     adminservice:
       path:  /admin/**
-      url: http://adminservice:8078
+#      url: http://adminservice:8078
       serviceId: adminservice
   host:
     time-to-live: -1
@@ -57,6 +57,47 @@ zuul:
     socket-timeout-millis: 60000
     semaphore:
       max-semaphores: 500
+
+
+layoutservice:
+  ribbon:
+    url: http://layoutservice:8180
+
+authservice:
+  ribbon:
+    url: http://authserver:8901
+
+resourceservice:
+  ribbon:
+    url: http://resourceservice:8280
+
+commonservice:
+  ribbon:
+    url: http://commonservice:8380
+
+inventoryservice:
+  ribbon:
+    url: http://inventoryservice:8480
+
+inboundservice:
+  ribbon:
+    url: http://inboundservice:8580
+
+outboundservice:
+  ribbon:
+    url: http://outboundservice:8680
+
+workorderservice:
+  ribbon:
+    url: http://workorderservice:8780
+
+integrationservice:
+  ribbon:
+    url: http://integrationservice:8880
+
+adminservice:
+  ribbon:
+    url: http://adminservice:8078
 
 hystrix:
   command:
