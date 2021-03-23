@@ -11,44 +11,44 @@ zuul:
   routes:
     layoutservice:
       path: /layout/**
-      url: http://layoutservice:8180
-#      serviceId: layoutservice
+#      url: http://layoutservice:8180
+      serviceId: layoutservice
     authservice:
       path:  /auth/**
-      url: http://authserver:8901
-#      serviceId: authserver
+#      url: http://authserver:8901
+      serviceId: authserver
     resourceservice:
       path:  /resource/**
-      url: http://resourceservice:8280
-#      serviceId: resourceservice
+#      url: http://resourceservice:8280
+      serviceId: resourceservice
     commonservice:
       path:  /common/**
-      url: http://commonservice:8380
-#      serviceId: commonservice
+#      url: http://commonservice:8380
+      serviceId: commonservice
     inventoryservice:
       path:  /inventory/**
-      url: http://inventoryservice:8480
-#      serviceId: inventoryservice
+#      url: http://inventoryservice:8480
+      serviceId: inventoryservice
     inboundservice:
       path:  /inbound/**
-      url: http://inboundservice:8580
-#      serviceId: inboundservice
+#      url: http://inboundservice:8580
+      serviceId: inboundservice
     outboundservice:
       path:  /outbound/**
-      url: http://outboundservice:8680
-#      serviceId: outboundservice
+#      url: http://outboundservice:8680
+      serviceId: outboundservice
     workorderservice:
       path:  /workorder/**
-      url: http://workorderservice:8780
-#      serviceId: workorderservice
+#      url: http://workorderservice:8780
+      serviceId: workorderservice
     integrationservice:
       path:  /integration/**
-      url: http://integrationservice:8880
-#      serviceId: integrationservice
+#      url: http://integrationservice:8880
+      serviceId: integrationservice
     adminservice:
       path:  /admin/**
-      url: http://adminservice:8078
-#      serviceId: adminservice
+#      url: http://adminservice:8078
+      serviceId: adminservice
   host:
     time-to-live: -1
     connect-timeout-millis: 5000
@@ -58,6 +58,46 @@ zuul:
     semaphore:
       max-semaphores: 500
 
+
+layoutservice:
+  ribbon:
+    listOfServers: http://layoutservice:8180
+
+authservice:
+  ribbon:
+    listOfServers: http://authserver:8901
+
+resourceservice:
+  ribbon:
+    listOfServers: http://resourceservice:8280
+
+commonservice:
+  ribbon:
+    listOfServers: http://commonservice:8380
+
+inventoryservice:
+  ribbon:
+    listOfServers: http://inventoryservice:8480
+
+inboundservice:
+  ribbon:
+    listOfServers: http://inboundservice:8580
+
+outboundservice:
+  ribbon:
+    listOfServers: http://outboundservice:8680
+
+workorderservice:
+  ribbon:
+    listOfServers: http://workorderservice:8780
+
+integrationservice:
+  ribbon:
+    listOfServers: http://integrationservice:8880
+
+adminservice:
+  ribbon:
+    listOfServers: http://adminservice:8078
 
 hystrix:
   command:
