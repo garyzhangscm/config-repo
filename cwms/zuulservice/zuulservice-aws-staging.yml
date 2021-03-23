@@ -59,46 +59,6 @@ zuul:
       max-semaphores: 500
 
 
-layoutservice:
-  ribbon:
-    url: http://layoutservice:8180
-
-authservice:
-  ribbon:
-    url: http://authserver:8901
-
-resourceservice:
-  ribbon:
-    url: http://resourceservice:8280
-
-commonservice:
-  ribbon:
-    url: http://commonservice:8380
-
-inventoryservice:
-  ribbon:
-    url: http://inventoryservice:8480
-
-inboundservice:
-  ribbon:
-    url: http://inboundservice:8580
-
-outboundservice:
-  ribbon:
-    url: http://outboundservice:8680
-
-workorderservice:
-  ribbon:
-    url: http://workorderservice:8780
-
-integrationservice:
-  ribbon:
-    url: http://integrationservice:8880
-
-adminservice:
-  ribbon:
-    url: http://adminservice:8078
-
 hystrix:
   command:
     default:
@@ -106,11 +66,11 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 25000
-ribbon:
-  ReadTimeout: 60000
-  connection-timeout: 3000
-  eureka:
-    enabled: false
+# ribbon:
+#  ReadTimeout: 60000
+#  connection-timeout: 3000
+#  eureka:
+#    enabled: false
 
 # Expose * so we can access /actuator/routes
 management:
