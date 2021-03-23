@@ -108,14 +108,14 @@ security:
       userInfoUri: http://authserver:8901/user
       tokenInfoUri: http://authserver:8901/oauth/check_token
 
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://eurekaserver:8761/eureka
+# eureka:
+#  instance:
+#    preferIpAddress: true
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://eurekaserver:8761/eureka
 
 logging:
   level:
