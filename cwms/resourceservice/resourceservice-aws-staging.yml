@@ -140,5 +140,6 @@ site:
 report:
   template:
     folder: /usr/local/reports/templates
+    resourceFolder: reports/meta
   result:
     folder: /usr/local/reports/results
