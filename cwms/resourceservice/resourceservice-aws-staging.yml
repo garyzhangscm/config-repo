@@ -135,8 +135,6 @@ site:
     singleCompany: false
     defaultCompanyCode: 20901
 
-
-
 report:
   template:
     folder: /usr/local/reports/templates
