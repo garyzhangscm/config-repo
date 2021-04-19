@@ -141,5 +141,6 @@ report:
   template:
     folder: /usr/local/reports/templates
     resourceFolder: reports/meta
+    temp: /usr/local/reports/templates_temp
   result:
     folder: /usr/local/reports/results
