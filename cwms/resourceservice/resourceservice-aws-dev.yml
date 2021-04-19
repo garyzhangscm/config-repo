@@ -140,7 +140,7 @@ site:
 report:
   template:
     folder: /usr/local/reports/templates
+      temp: /usr/local/reports/templates_temp
     resourceFolder: reports/meta
-    temp: /usr/local/reports/templates_temp
   result:
     folder: /usr/local/reports/results
