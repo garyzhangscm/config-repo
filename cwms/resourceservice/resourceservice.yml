@@ -96,7 +96,7 @@ site:
 report:
   template:
     folder: /usr/local/reports/templates
-      temp: /usr/local/reports/templates_temp
+    tempFolder: /usr/local/reports/templates_temp
     resourceFolder: reports/meta
   result:
     folder: /usr/local/reports/results
