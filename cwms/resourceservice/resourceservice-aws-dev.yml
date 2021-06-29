@@ -134,6 +134,7 @@ site:
   company:
     singleCompany: false
     defaultCompanyCode: 20901
+  allowDataInitialFlag: false
 
 
 
