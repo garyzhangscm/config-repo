@@ -1,0 +1,689 @@
+###
+# backend application
+# 1. auth
+# 2. Layout server
+# 3. resource server
+###
+apiVersion: v1
+kind: Service
+metadata:
+  name: authserver
+  namespace: staging
+  labels:
+    app: authserver
+spec:
+  selector:
+    app: authserver
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8901
+      targetPort: 8901
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authserver
+  namespace: staging
+  labels:
+    app: authserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authserver
+  template:
+    metadata:
+      labels:
+        app: authserver
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: authserver
+        image: garyzhangscm/cwms-auth:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8901
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: layoutservice
+  namespace: staging
+  labels:
+    app: layoutservice
+spec:
+  selector:
+    app: layoutservice
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8180
+      targetPort: 8180
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: layoutservice
+  namespace: staging
+  labels:
+    app: layoutservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: layoutservice
+  template:
+    metadata:
+      labels:
+        app: layoutservice
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: layoutservice
+        image: garyzhangscm/cwms-layoutserver:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8180
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: resourceservice
+  namespace: staging
+  labels:
+    app: resourceservice
+spec:
+  selector:
+    app: resourceservice
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8280
+      targetPort: 8280
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resourceservice
+  namespace: staging
+  labels:
+    app: resourceservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resourceservice
+  template:
+    metadata:
+      labels:
+        app: resourceservice
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: resourceservice
+        image: garyzhangscm/cwms-ressvr:latest
+        imagePullPolicy: Always
+#        volumeMounts:
+#        - name: report-volume
+#          mountPath: /usr/local/reports
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8280
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
+        - name: LANG
+          value: "C.UTF-8"
+        # Load path to add additional class path
+        # to load the i18n resource bundle for 
+        # report
+        - name: LOADER_PATH
+          value: /usr/local/reports/templates/
+#      volumes:
+#        - name: report-volume
+#          awsElasticBlockStore:
+#            fsType: ext4
+#            volumeID: vol-0dcdfdb14f5a23ebf
+          
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: commonservice
+  namespace: staging
+  labels:
+    app: commonservice
+spec:
+  selector:
+    app: commonservice
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8380
+      targetPort: 8380
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commonservice
+  namespace: staging
+  labels:
+    app: commonservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commonservice
+  template:
+    metadata:
+      labels:
+        app: commonservice
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: commonservice
+        image: garyzhangscm/cwms-commonserver:latest
+        imagePullPolicy: Always
+#        volumeMounts:
+#        - name: report-volume
+#          mountPath: /usr/local/reports
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8380
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
+#      volumes:
+#        - name: report-volume
+#          awsElasticBlockStore:
+#            fsType: ext4
+#            volumeID: vol-0dcdfdb14f5a23ebf
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventoryservice
+  namespace: staging
+  labels:
+    app: inventoryservice
+spec:
+  selector:
+    app: inventoryservice
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8480
+      targetPort: 8480
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventoryservice
+  namespace: staging
+  labels:
+    app: inventoryservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventoryservice
+  template:
+    metadata:
+      labels:
+        app: inventoryservice
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: inventoryservice
+        image: garyzhangscm/cwms-inventoryserver:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8480
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: inboundservice
+  namespace: staging
+  labels:
+    app: inboundservice
+spec:
+  selector:
+    app: inboundservice
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8580
+      targetPort: 8580
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inboundservice
+  namespace: staging
+  labels:
+    app: inboundservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inboundservice
+  template:
+    metadata:
+      labels:
+        app: inboundservice
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: inboundservice
+        image: garyzhangscm/cwms-inboundserver:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8580
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: outboundservice
+  namespace: staging
+  labels:
+    app: outboundservice
+spec:
+  selector:
+    app: outboundservice
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8680
+      targetPort: 8680
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: outboundservice
+  namespace: staging
+  labels:
+    app: outboundservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: outboundservice
+  template:
+    metadata:
+      labels:
+        app: outboundservice
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: outboundservice
+        image: garyzhangscm/cwms-outboundserver:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8680
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: workorderservice
+  namespace: staging
+  labels:
+    app: workorderservice
+spec:
+  selector:
+    app: workorderservice
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8780
+      targetPort: 8780
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workorderservice
+  namespace: staging
+  labels:
+    app: workorderservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workorderservice
+  template:
+    metadata:
+      labels:
+        app: workorderservice
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: workorderservice
+        image: garyzhangscm/cwms-workorderserver:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8780
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: integrationservice
+  namespace: staging
+  labels:
+    app: integrationservice
+spec:
+  selector:
+    app: integrationservice
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8880
+      targetPort: 8880
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: integrationservice
+  namespace: staging
+  labels:
+    app: integrationservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: integrationservice
+  template:
+    metadata:
+      labels:
+        app: integrationservice
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: integrationservice
+        image: garyzhangscm/cwms-integrationserver:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8880
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: adminservice
+  namespace: staging
+  labels:
+    app: adminservice
+spec:
+  selector:
+    app: adminservice
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8078
+      targetPort: 8078
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adminservice
+  namespace: staging
+  labels:
+    app: adminservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adminservice
+  template:
+    metadata:
+      labels:
+        app: adminservice
+    spec:
+      nodeSelector:
+        subnet: private
+      containers:
+      - name: adminservice
+        image: garyzhangscm/cwms-adminserver:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.25"
+            memory: "256Mi"
+        ports:
+        - containerPort: 8078
+        env:
+        - name: SPRING_PROFILE
+          value: "aws-staging"
+        - name: CONFIGSERVER_URI
+          value: "http://configserver:8888"
+        - name: CONFIGSERVER_PORT
+          value: "8888"
+        - name: DATABASE_URL
+          value: "database"
+        - name: DATABASESERVER_PORT
+          value: "3306"
+        - name: ENCRYPT_KEY
+          value: "CWMS2018"
+        - name: COMPOSE_PROJECT_NAME
+          value: "CWMS-APP"
+        - name: TZ
+          value: "America/Los_Angeles"
