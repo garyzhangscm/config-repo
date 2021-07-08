@@ -93,7 +93,7 @@ site:
     singleCompany: false
     defaultCompanyCode: 20901
   allowDataInitialFlag: true
-  serverSidePrinting: false
+  serverSidePrinting: true
 
 report:
   template:
